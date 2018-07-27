@@ -154,7 +154,11 @@ module ActionDispatch
         when Hash
           route_name = options.delete :use_route
           _routes.url_for(options.symbolize_keys.reverse_merge!(url_options),
-                         route_name)
+                          route_name)
+        when ActionController::Parameters
+          route_name = options.delete :use_route
+          _routes.url_for(options.to_unsafe_h.symbolize_keys.
+              reverse_merge!(url_options), route_name)
         when String
           options
         when Symbol
@@ -188,9 +192,9 @@ module ActionDispatch
 
       private
 
-        def _generate_paths_by_default
-          true
-        end
+      def _generate_paths_by_default
+        true
+      end
     end
   end
 end
