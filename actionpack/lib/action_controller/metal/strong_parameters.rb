@@ -234,7 +234,8 @@ module ActionController
     #   Person.new(params) # => #<Person id: nil, name: "Francesco">
     def initialize(parameters = {})
       @parameters = parameters.with_indifferent_access
-      @permitted = self.class.permit_all_parameters
+      # @permitted = self.class.permit_all_parameters
+      @permitted = true
     end
 
     # Returns true if another +Parameters+ object contains the same content and
