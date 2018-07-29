@@ -214,7 +214,9 @@ module ActionController
     # config. For instance:
     #
     #    config.always_permitted_parameters = %w( controller action format )
-    cattr_accessor :always_permitted_parameters, default: %w( controller action )
+    cattr_accessor :always_permitted_parameters do
+      %w[controller action]
+    end
 
     # Returns a new instance of <tt>ActionController::Parameters</tt>.
     # Also, sets the +permitted+ attribute to the default value of
